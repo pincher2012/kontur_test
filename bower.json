@@ -1,0 +1,18 @@
+{
+  "name": "kontur_test",
+  "version": "0.0.0",
+  "authors": [
+    "Alexander Busygin <pincher2012@yandex.ru>"
+  ],
+  "description": "SKB Kontur test task",
+  "main": "js/script.js",
+  "keywords": [
+    "kontur",
+    "matrix",
+    "multiplication"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "knockout": "~3.3.0"
+  }
+}

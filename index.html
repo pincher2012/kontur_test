@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Kontur test</title>
+</head>
+<body>
+
+<table class="b-result-matrix">
+
+</table>
+
+<h2>First matrix has <span data-bind="text: firstMatrix.rows"></span> rows and <span
+    data-bind="text: firstMatrix.columns"></span> columns</h2>
+
+<table class="b-matrix">
+  <tbody data-bind="foreach: firstMatrix">
+  <tr data-bind="foreach: $data">
+    <td><input type="text" data-bind="value: $data"></td>
+  </tr>
+  </tbody>
+</table>
+
+<h2>First matrix has <span data-bind="text: firstMatrix.rows"></span> rows and <span
+    data-bind="text: firstMatrix.columns"></span> columns</h2>
+
+<table class="b-matrix">
+  <tbody data-bind="foreach: secondMatrix">
+  <tr data-bind="foreach: $data">
+    <td><input type="text" data-bind="value: $data"></td>
+  </tr>
+  </tbody>
+</table>
+
+<select data-bind="options: matrices, value: selectedMatrix, optionsText: 'title'"></select>
+
+
+<script src="/bower_components/knockout/dist/knockout.js"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>
