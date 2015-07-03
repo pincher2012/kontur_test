@@ -34,6 +34,14 @@
 
 <select data-bind="options: matrices, value: selectedMatrix, optionsText: 'title'"></select>
 
+<p data-bind="text: selectedMatrix().id"></p>
+
+<button data-bind="click: selectedMatrix().item().addRow, enable: selectedMatrix().item().rows() < 10">Add row</button>
+<button data-bind="click: selectedMatrix().item().removeRow, enable: selectedMatrix().item().rows() > 2">Remove row</button>
+<br />
+<button data-bind="click: selectedMatrix().item().addColumn, enable: selectedMatrix().item().columns() < 10">Add column</button>
+<button data-bind="click: selectedMatrix().item().removeColumn, enable: selectedMatrix().item().columns() > 2">Remove column</button>
+
 
 <script src="/bower_components/knockout/dist/knockout.js"></script>
 <script src="/js/script.js"></script>
