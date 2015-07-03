@@ -20,13 +20,13 @@ function Matrix(matrix) {
     };
 
     self.addColumn = function () {
-        ko.utils.arrayForEach(self.data(), function(item) {
+        ko.utils.arrayForEach(self.data(), function (item) {
             item.push('');
         });
     };
 
     self.removeColumn = function () {
-        ko.utils.arrayForEach(self.data(), function(item) {
+        ko.utils.arrayForEach(self.data(), function (item) {
             item.pop();
         });
     };
@@ -46,17 +46,19 @@ function MatrixViewModel() {
         ko.observableArray([5, 6, 7, 8])
     ]));
 
-    self.selectedMatrix = ko.observable();
+    self.selectedMatrixId = ko.observable(0);
+    self.selectedMatrix = ko.computed(function () {
+        return (self.selectedMatrixId() == 0) ? self.firstMatrix() : self.secondMatrix()
+    });
+
     self.matrices = [
         {
             id: 0,
-            item: self.firstMatrix,
-            title: 'A'
+            title: 'Матрица A'
         },
         {
             id: 1,
-            item: self.secondMatrix,
-            title: 'B'
+            title: 'Матрица B'
         }
     ];
 };

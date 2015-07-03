@@ -32,16 +32,16 @@
   </tbody>
 </table>
 
-<select data-bind="options: matrices, value: selectedMatrix, optionsText: 'title'"></select>
+<!-- ko foreach: matrices -->
+<input type="radio" name="selectedMatrix" data-bind="checkedValue: $data.id, checked: $root.selectedMatrixId" />
+<span data-bind="text: title"></span>
+<!-- /ko -->
 
-<p data-bind="text: selectedMatrix().id"></p>
-
-<button data-bind="click: selectedMatrix().item().addRow, enable: selectedMatrix().item().rows() < 10">Add row</button>
-<button data-bind="click: selectedMatrix().item().removeRow, enable: selectedMatrix().item().rows() > 2">Remove row</button>
+<button data-bind="click: selectedMatrix().addRow, enable: selectedMatrix().rows() < 10">Add row</button>
+<button data-bind="click: selectedMatrix().removeRow, enable: selectedMatrix().rows() > 2">Remove row</button>
 <br />
-<button data-bind="click: selectedMatrix().item().addColumn, enable: selectedMatrix().item().columns() < 10">Add column</button>
-<button data-bind="click: selectedMatrix().item().removeColumn, enable: selectedMatrix().item().columns() > 2">Remove column</button>
-
+<button data-bind="click: selectedMatrix().addColumn, enable: selectedMatrix().columns() < 10">Add column</button>
+<button data-bind="click: selectedMatrix().removeColumn, enable: selectedMatrix().columns() > 2">Remove column</button>
 
 <script src="/bower_components/knockout/dist/knockout.js"></script>
 <script src="/js/script.js"></script>
