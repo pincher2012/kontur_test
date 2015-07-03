@@ -36,7 +36,9 @@
 <input type="radio" name="selectedMatrix" data-bind="checkedValue: $data.id, checked: $root.selectedMatrixId" />
 <span data-bind="text: title"></span>
 <!-- /ko -->
-
+<br />
+<button data-bind="click: swapMatrix">Swap matrix</button>
+<br />
 <button data-bind="click: selectedMatrix().addRow, enable: selectedMatrix().rows() < 10">Add row</button>
 <button data-bind="click: selectedMatrix().removeRow, enable: selectedMatrix().rows() > 2">Remove row</button>
 <br />

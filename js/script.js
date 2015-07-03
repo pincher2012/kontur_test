@@ -61,6 +61,15 @@ function MatrixViewModel() {
             title: 'Матрица B'
         }
     ];
+
+    self.swapMatrix = function () {
+        var tmp = self.firstMatrix;
+        self.firstMatrix = self.secondMatrix;
+        self.secondMatrix = tmp;
+
+        self.firstMatrix.valueHasMutated();
+        self.secondMatrix.valueHasMutated();
+    }
 };
 
 ko.applyBindings(new MatrixViewModel());
