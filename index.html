@@ -6,44 +6,50 @@
 </head>
 <body>
 
-<table class="b-result-matrix">
-
-</table>
-
-<h2>First matrix has <span data-bind="text: firstMatrix.rows"></span> rows and <span
-    data-bind="text: firstMatrix.columns"></span> columns</h2>
-
-<table class="b-matrix">
-  <tbody data-bind="foreach: firstMatrix">
-  <tr data-bind="foreach: $data">
-    <td><input type="text" data-bind="value: $data"></td>
-  </tr>
-  </tbody>
-</table>
-
-<h2>First matrix has <span data-bind="text: firstMatrix.rows"></span> rows and <span
-    data-bind="text: firstMatrix.columns"></span> columns</h2>
-
-<table class="b-matrix">
-  <tbody data-bind="foreach: secondMatrix">
-  <tr data-bind="foreach: $data">
-    <td><input type="text" data-bind="value: $data"></td>
-  </tr>
-  </tbody>
-</table>
+<div data-bind="template: { name: 'matrixTemplate', data: firstMatrix }"></div>
+<div data-bind="template: { name: 'matrixTemplate', data: secondMatrix }"></div>
 
 <!-- ko foreach: matrices -->
 <input type="radio" name="selectedMatrix" data-bind="checkedValue: $data.id, checked: $root.selectedMatrixId" />
 <span data-bind="text: title"></span>
 <!-- /ko -->
+
 <br />
-<button data-bind="click: swapMatrix">Swap matrix</button>
-<br />
-<button data-bind="click: selectedMatrix().addRow, enable: selectedMatrix().rows() < 10">Add row</button>
-<button data-bind="click: selectedMatrix().removeRow, enable: selectedMatrix().rows() > 2">Remove row</button>
-<br />
+
 <button data-bind="click: selectedMatrix().addColumn, enable: selectedMatrix().columns() < 10">Add column</button>
 <button data-bind="click: selectedMatrix().removeColumn, enable: selectedMatrix().columns() > 2">Remove column</button>
+
+<br />
+
+<button data-bind="click: selectedMatrix().addRow, enable: selectedMatrix().rows() < 10">Add row</button>
+<button data-bind="click: selectedMatrix().removeRow, enable: selectedMatrix().rows() > 2">Remove row</button>
+
+<br />
+
+<button data-bind="click: clear">Clear</button>
+<button data-bind="click: swap">Swap</button>
+
+
+<script type="text/html" id="matrixTemplate">
+  <h2>Matrix has <span data-bind="text: rows"></span> rows and <span data-bind="text: columns"></span> columns</h2>
+  <table>
+    <tbody data-bind="foreach: data">
+    <tr data-bind="foreach: $data.cells">
+      <td><input type="text" data-bind="value: $data.value" /></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <tbody data-bind="foreach: data">
+    <tr data-bind="foreach: $data.cells">
+      <td data-bind="text: $data.value"></td>
+    </tr>
+    </tbody>
+  </table>
+</script>
+
+
 
 <script src="/bower_components/knockout/dist/knockout.js"></script>
 <script src="/js/script.js"></script>

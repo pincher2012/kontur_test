@@ -1,50 +1,82 @@
-function Matrix(matrix) {
+function Cell (n) {
+    var self = this;
+    self.value = ko.observable(n);
+
+    self.clear = function () {
+        self.value('');
+    }
+}
+
+function Row (n) {
+    var self = this;
+    self.cells = ko.observableArray([]);
+    for (var i = 0; i < n; i++) {
+        self.cells.push(new Cell(''));
+    }
+
+    self.addItem = function () {
+        self.cells.push(new Cell(''));
+    };
+
+    self.removeItem = function () {
+        self.cells.pop();
+    };
+
+    self.clear = function () {
+        ko.utils.arrayForEach(self.cells(), function (cell){
+            cell.clear();
+        });
+    };
+}
+
+function Matrix(m, n) {
     var self = this;
 
-    self.data = ko.observableArray(matrix);
+    self.data = ko.observableArray([]);
+    for (var i = 0; i < n; i++) {
+        self.data.push(new Row(m));
+    }
+
     self.rows = ko.computed(function () {
         return self.data().length;
     });
 
     self.columns = ko.computed(function () {
-        return self.data()[0]().length;
+        return self.data()[0].cells().length;
     });
 
+    self.addColumn = function () {
+        ko.utils.arrayForEach(self.data(), function(item){
+            item.addItem();
+        });
+    };
+
+    self.removeColumn = function () {
+        ko.utils.arrayForEach(self.data(), function(item){
+            item.removeItem();
+        });
+    };
+
     self.addRow = function () {
-        var row = ko.observableArray(Array(self.columns()).join('.').split('.'));
-        self.data.push(row);
+        self.data.push(new Row(self.columns()));
     };
 
     self.removeRow = function () {
         self.data.pop();
     };
 
-    self.addColumn = function () {
-        ko.utils.arrayForEach(self.data(), function (item) {
-            item.push('');
-        });
-    };
-
-    self.removeColumn = function () {
-        ko.utils.arrayForEach(self.data(), function (item) {
-            item.pop();
+    self.clear = function () {
+        ko.utils.arrayForEach(self.data(), function(item){
+            item.clear();
         });
     };
 }
 
 function MatrixViewModel() {
     var self = this;
-    self.firstMatrix = ko.observable(new Matrix([
-        ko.observableArray([1, 2]),
-        ko.observableArray([4, 5]),
-        ko.observableArray([7, 8]),
-        ko.observableArray([0, 9])
-    ]));
 
-    self.secondMatrix = ko.observable(new Matrix([
-        ko.observableArray([1, 2, 3, 4]),
-        ko.observableArray([5, 6, 7, 8])
-    ]));
+    self.firstMatrix = ko.observable(new Matrix(2,4));
+    self.secondMatrix = ko.observable(new Matrix(4,3));
 
     self.selectedMatrixId = ko.observable(0);
     self.selectedMatrix = ko.computed(function () {
@@ -62,14 +94,18 @@ function MatrixViewModel() {
         }
     ];
 
-    self.swapMatrix = function () {
-        var tmp = self.firstMatrix;
-        self.firstMatrix = self.secondMatrix;
-        self.secondMatrix = tmp;
+    self.swap = function () {
+        var tmp = self.firstMatrix();
 
-        self.firstMatrix.valueHasMutated();
-        self.secondMatrix.valueHasMutated();
-    }
+        self.firstMatrix(self.secondMatrix());
+        self.secondMatrix(tmp);
+    };
+
+    self.clear = function () {
+        self.firstMatrix().clear();
+        self.secondMatrix().clear();
+    };
+
 };
 
 ko.applyBindings(new MatrixViewModel());
