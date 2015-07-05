@@ -37,9 +37,9 @@
 <div class="b-content">
   <div class="ovh clear-font">
     <div data-bind="template: { name: 'resultMatrixTemplate', data: {data: resultMatrix, letter: 'c'} }" class="b-matrix-wrapper"></div>
-    <div data-bind="template: { name: 'matrixTemplate', data: {data: secondMatrix, letter: 'a'} }" class="b-matrix-wrapper"></div>
+    <div data-bind="template: { name: 'matrixTemplate', data: {data: secondMatrix, letter: 'a', letterCss: 'b-matrix-letter_side_right'} }" class="b-matrix-wrapper"></div>
   </div>
-  <div data-bind="template: { name: 'matrixTemplate', data: {data: firstMatrix, letter: 'b'} }" class="b-matrix-wrapper"></div>
+  <div data-bind="template: { name: 'matrixTemplate', data: {data: firstMatrix, letter: 'b', letterCss: 'b-matrix-letter_side_bottom'} }" class="b-matrix-wrapper"></div>
 </div>
 
 <script type="text/html" id="matrixTemplate">
@@ -60,6 +60,7 @@
     </div>
   </div>
   <div class="cell b-matrix-wrapper__bracket b-matrix-wrapper__bracket_right"></div>
+  <div data-bind="text: letter, css: letterCss" class="b-matrix-letter"></div>
 </script>
 
 <script type="text/html" id="resultMatrixTemplate">

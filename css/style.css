@@ -1,5 +1,7 @@
 html, body {
   height: 100%;
+  font: 14px "Segoe UI", sans-serif;
+  line-height: 20px;
 }
 
 .b-sidebar {
@@ -23,8 +25,9 @@ html, body {
 
 .b-matrix-wrapper {
   float: left;
-  margin: 15px 0 40px 40px;
+  margin: 15px 0 25px 40px;
   display: table;
+  position: relative;
 }
 
 .b-matrix-wrapper__bracket {
@@ -38,10 +41,6 @@ html, body {
 
 .b-matrix-wrapper__bracket_right {
   border-left-width: 0;
-}
-.b-matrix {
-  border-spacing: 10px;
-  border-collapse: separate;
 }
 
 .b-matrix-row {
@@ -70,6 +69,8 @@ html, body {
 
 .b-matrix_result .b-matrix-cell{
   padding: 18px 0 0 6px;
+  letter-spacing: 0.025em;
+  font-size: 13px;
 }
 
 .b-matrix_input .b-matrix-cell {
@@ -95,7 +96,7 @@ html, body {
   box-sizing: border-box;
   
   border: 0;
-  padding: 12px 0 0 6px;
+  padding: 14px 0 0 6px;
   margin: 0;
   width: 38px;
   height: 38px;
@@ -114,6 +115,26 @@ html, body {
 .b-matrix-cell_empty .b-matrix-cell__input {
   color: #c9c9c9;
 }
+
+.b-matrix-letter {
+  position: absolute;
+  text-transform: uppercase;
+  line-height: 1;
+  font-size: 28px;
+}
+
+.b-matrix-letter_side_right {
+  left: 100%;
+  top: 50%;
+  margin: -15px 0 0 19px;
+}
+
+.b-matrix-letter_side_bottom {
+  left: 50%;
+  top: 100%;
+  margin: 15px 0 0 -9px;
+}
+
 
 .clear {
   clear: both;
