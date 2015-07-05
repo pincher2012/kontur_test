@@ -1,0 +1,134 @@
+html, body {
+  height: 100%;
+}
+
+.b-sidebar {
+  width: 332px;
+  background: #bcbcbc;
+  height: 100%;
+  float: left;
+}
+
+.b-sidebar_state_editing {
+  background: #5199db;
+}
+
+.b-sidebar_state_error {
+  background: #f6c1c0;
+}
+
+.b-content {
+  margin-left: 332px;
+}
+
+.b-matrix-wrapper {
+  float: left;
+  margin: 15px 0 40px 40px;
+  display: table;
+}
+
+.b-matrix-wrapper__cell {
+  display: table-cell;
+}
+
+.b-matrix-wrapper__bracket {
+  border: 2px solid #404040;
+  width: 8px;
+}
+
+.b-matrix-wrapper__bracket_left {
+  border-right-width: 0;
+}
+
+.b-matrix-wrapper__bracket_right {
+  border-left-width: 0;
+}
+.b-matrix {
+  border-spacing: 10px;
+  border-collapse: separate;
+}
+
+.b-matrix-row {
+  margin: 10px 0;
+  font-size: 0;
+  line-height: 0;
+}
+
+.b-matrix-cell {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  width: 40px;
+  height: 40px;
+  border: 1px solid #d9d9d9;
+
+  vertical-align: bottom;
+  margin-left: 10px;
+  line-height: 1;
+
+  display: inline-block;
+  font-size: 16px;
+
+}
+
+.b-matrix_result .b-matrix-cell{
+  padding: 18px 0 0 6px;
+}
+
+.b-matrix_input .b-matrix-cell {
+  border-top-color: #b2b2b2;
+
+  -webkit-box-shadow: inset 0 1px 0 0 rgba(242,242,242,1);
+  -moz-box-shadow: inset 0 1px 0 0 rgba(242,242,242,1);
+  box-shadow: inset 0 1px 0 0 rgba(242,242,242,1);
+}
+
+.b-matrix_input .b-matrix-cell_active {
+  outline: 1px solid #5199db;
+  border-color: #5199db;
+
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.b-matrix-cell__input {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  
+  border: 0;
+  padding: 12px 0 0 6px;
+  margin: 0;
+  width: 38px;
+  height: 38px;
+}
+
+.b-matrix-cell:first-child {
+  margin-left: 0;
+}
+
+.b-matrix_result .b-matrix-cell {
+  background: #f2f2f2;
+
+}
+
+.b-matrix-cell_empty,
+.b-matrix-cell_empty .b-matrix-cell__input {
+  color: #c9c9c9;
+}
+
+.clear {
+  clear: both;
+  display: block;
+}
+
+.ovh {
+  overflow: hidden;
+}
+
+.clear-font {
+  font-size: 0;
+  line-height: 0;
+}

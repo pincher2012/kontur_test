@@ -8,54 +8,72 @@
 </head>
 <body>
 
-<div data-bind="template: { name: 'resultMatrixTemplate', data: resultMatrix }"></div>
-<div data-bind="template: { name: 'matrixTemplate', data: firstMatrix }"></div>
-<div data-bind="template: { name: 'matrixTemplate', data: secondMatrix }"></div>
+<div data-bind="css: {'b-sidebar_state_editing': editing, 'b-sidebar_state_error': !isComputable(), }" class="b-sidebar">
 
-<!-- ko foreach: matrices -->
-<input type="radio" name="selectedMatrix" data-bind="checkedValue: $data.id, checked: $root.selectedMatrixId" />
-<span data-bind="text: title"></span>
-<!-- /ko -->
+  <!-- ko foreach: matrices -->
+  <input type="radio" name="selectedMatrix" data-bind="checkedValue: $data.id, checked: $root.selectedMatrixId" />
+  <span data-bind="text: title"></span>
+  <!-- /ko -->
 
-<br />
+  <br />
 
-<button data-bind="click: selectedMatrix().addColumn, enable: selectedMatrix().columns() < 10">Add column</button>
-<button data-bind="click: selectedMatrix().removeColumn, enable: selectedMatrix().columns() > 2">Remove column</button>
+  <button data-bind="click: addColumn, enable: selectedMatrix().columns() < 10">Add column</button>
+  <button data-bind="click: removeColumn, enable: selectedMatrix().columns() > 2">Remove column
+  </button>
 
-<br />
+  <br />
 
-<button data-bind="click: selectedMatrix().addRow, enable: selectedMatrix().rows() < 10">Add row</button>
-<button data-bind="click: selectedMatrix().removeRow, enable: selectedMatrix().rows() > 2">Remove row</button>
+  <button data-bind="click: addRow, enable: selectedMatrix().rows() < 10">Add row</button>
+  <button data-bind="click: removeRow, enable: selectedMatrix().rows() > 2">Remove row</button>
 
-<br />
+  <br />
 
-<button data-bind="click: clear">Clear</button>
-<button data-bind="click: swap">Swap</button>
-<button data-bind="click: compute">Compute</button>
+  <button data-bind="click: clear">Clear</button>
+  <button data-bind="click: swap">Swap</button>
+  <button data-bind="click: compute">Compute</button>
 
+</div>
+
+<div class="b-content">
+  <div class="ovh clear-font">
+    <div data-bind="template: { name: 'resultMatrixTemplate', data: {data: resultMatrix, letter: 'c'} }" class="b-matrix-wrapper"></div>
+    <div data-bind="template: { name: 'matrixTemplate', data: {data: secondMatrix, letter: 'a'} }" class="b-matrix-wrapper"></div>
+  </div>
+  <div data-bind="template: { name: 'matrixTemplate', data: {data: firstMatrix, letter: 'b'} }" class="b-matrix-wrapper"></div>
+</div>
 
 <script type="text/html" id="matrixTemplate">
-  <h2>Matrix has <span data-bind="text: columns"></span> columns and <span data-bind="text: rows"></span> rows</h2>
-  <table>
-    <tbody data-bind="foreach: data">
-    <tr data-bind="foreach: $data.cells">
-      <td><input type="text" data-bind="value: $data.value, numeric: $data.value, valueUpdate: 'afterkeydown', event: { focus: $root.enableEditing, blur: $root.disableEditing}" /></td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="b-matrix-wrapper__cell b-matrix-wrapper__bracket b-matrix-wrapper__bracket_left"></div>
+  <div class="b-matrix-wrapper__cell">
+    <div data-bind="foreach: data" class="b-matrix b-matrix_input">
+      <div data-bind="foreach: $data.cells" class="b-matrix-row">
+        <div class="b-matrix-cell" data-bind="css:{'b-matrix-cell_active': $data.editing, 'b-matrix-cell_empty': $data.value() === '' && !$data.editing()}">
+          <input type="text" data-bind="value: ($data.value() !== '' || $data.editing()) ? $data.value() : ($parentContext.$parent.letter + ($parentContext.$index() + 1) + ',' + ($index() + 1)),
+                                        numeric: $data.value,
+                                        valueUpdate: 'afterkeydown',
+                                        event: { focus: $root.enableEditing, blur: $root.disableEditing},
+                                        hasFocus: $data.editing"
+                 class="b-matrix-cell__input" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="b-matrix-wrapper__cell b-matrix-wrapper__bracket b-matrix-wrapper__bracket_right"></div>
 </script>
 
 <script type="text/html" id="resultMatrixTemplate">
-  <table>
-    <tbody data-bind="foreach: $data">
-    <tr data-bind="foreach: $data">
-      <td data-bind="text: $data"></td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="b-matrix-wrapper__cell b-matrix-wrapper__bracket b-matrix-wrapper__bracket_left"></div>
+  <div class="b-matrix-wrapper__cell">
+    <div data-bind="foreach: data" class="b-matrix b-matrix_result">
+      <div data-bind="foreach: $data.cells" class="b-matrix-row">
+        <div data-bind="text: $data.value() !== '' ? $data.value() : ($parentContext.$parent.letter + ($parentContext.$index() + 1) + ',' + ($index() + 1)),
+                        css: {'b-matrix-cell_empty': $data.value() === ''}"
+             class="b-matrix-cell"></div>
+      </div>
+    </div>
+  </div>
+  <div class="b-matrix-wrapper__cell b-matrix-wrapper__bracket b-matrix-wrapper__bracket_right"></div>
 </script>
-
-
 
 <script src="/bower_components/knockout/dist/knockout.js"></script>
 <script src="/bower_components/jquery/jquery.js"></script>

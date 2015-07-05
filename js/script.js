@@ -1,10 +1,10 @@
 function Cell(n) {
     var self = this;
     self.value = ko.observable(n);
-
+    self.editing = ko.observable(false);
     self.clear = function () {
         self.value('');
-    }
+    };
 }
 
 function Row(n) {
@@ -121,16 +121,14 @@ function MatrixViewModel() {
 
     self.firstMatrix = ko.observable(new Matrix(3, 2));
     self.secondMatrix = ko.observable(new Matrix(2, 4));
+    self.resultMatrix = ko.observable(new Matrix(self.firstMatrix().columns(), self.secondMatrix().rows()));
 
-    self.selectedMatrixId = ko.observable(0);
+    self.selectedMatrixId = ko.observable(1);
     self.selectedMatrix = ko.computed(function () {
         return (self.selectedMatrixId() == 0) ? self.firstMatrix() : self.secondMatrix()
     });
 
-    self.resultMatrix = ko.observable(new Matrix(self.firstMatrix().rows(), self.secondMatrix().columns()));
-
     self.editing = ko.observable(false);
-
     self.enableEditing = function (){
         self.editing(true);
     };
@@ -139,17 +137,17 @@ function MatrixViewModel() {
         self.editing(false);
     };
     self.isComputable = ko.computed(function () {
-        return self.firstMatrix().columns() == self.secondMatrix().rows();
+        return self.firstMatrix().rows() == self.secondMatrix().columns();
     });
 
     self.cell = new Cell(1);
     self.matrices = [
         {
-            id: 0,
+            id: 1,
             title: 'Матрица A'
         },
         {
-            id: 1,
+            id: 0,
             title: 'Матрица B'
         }
     ];
@@ -168,6 +166,27 @@ function MatrixViewModel() {
         reinitResultMatrix();
     };
 
+    self.addColumn = function () {
+        self.selectedMatrix().addColumn();
+        reinitResultMatrix();
+    };
+
+    self.removeColumn = function () {
+        self.selectedMatrix().removeColumn();
+        reinitResultMatrix();
+    };
+
+    self.addRow = function () {
+        self.selectedMatrix().addRow();
+        reinitResultMatrix();
+    };
+
+    self.removeRow = function () {
+        self.selectedMatrix().removeRow();
+        reinitResultMatrix();
+    };
+
+
     self.compute = function () {
         var firstMatrix = self.firstMatrix().transpose(),
             secondMatrix = self.secondMatrix().toArray(),
@@ -181,10 +200,10 @@ function MatrixViewModel() {
             for (var j = 0; j < columns; j++) {
                 row.push(multiplieArrays(firstMatrix[j], secondMatrix[i]));
             }
-            data.push(row);
+            data.push(new Row(row));
         }
 
-        self.resultMatrix(data);
+        self.resultMatrix(new Matrix(data));
     };
 
     var multiplieArrays = function (a, b) {
@@ -192,12 +211,12 @@ function MatrixViewModel() {
         for (var i = 0; i < a.length; i++) {
             sum += a[i] * b[i];
         }
-        return sum;
+        return new Cell(sum);
     };
 
     var reinitResultMatrix = function () {
-        var result = new Matrix(self.firstMatrix().rows(), self.secondMatrix().columns());
-        self.resultMatrix(result.toArray());
+        var result = new Matrix(self.firstMatrix().columns(), self.secondMatrix().rows());
+        self.resultMatrix(result);
     }
 };
 
