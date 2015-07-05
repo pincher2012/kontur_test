@@ -37,7 +37,7 @@
   <table>
     <tbody data-bind="foreach: data">
     <tr data-bind="foreach: $data.cells">
-      <td><input type="text" data-bind="value: $data.value" /></td>
+      <td><input type="text" data-bind="value: $data.value, numeric: $data.value, valueUpdate: ['afterkeydown']" /></td>
     </tr>
     </tbody>
   </table>
@@ -56,6 +56,7 @@
 
 
 <script src="/bower_components/knockout/dist/knockout.js"></script>
+<script src="/bower_components/jquery/jquery.js"></script>
 <script src="/js/script.js"></script>
 </body>
 </html>
