@@ -211,7 +211,7 @@ ko.bindingHandlers.numeric = {
                 return;
             }
             else if (ko.unwrap(valueAccessor()) == '' && (event.keyCode == 109 || event.keyCode == 189)) {
-                return
+                return;
             }
             else {
                 // Ensure that it is a number and stop the keypress
@@ -229,7 +229,7 @@ ko.bindingHandlers.numeric = {
                     event.preventDefault();
                 }
 
-                if (value === 0) {
+                if (value >= -10 && value <= 10) {
                     element.value = value;
                     event.preventDefault();
                 }
