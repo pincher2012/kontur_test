@@ -6,6 +6,7 @@
 </head>
 <body>
 
+<div data-bind="template: { name: 'resultMatrixTemplate', data: resultMatrix }"></div>
 <div data-bind="template: { name: 'matrixTemplate', data: firstMatrix }"></div>
 <div data-bind="template: { name: 'matrixTemplate', data: secondMatrix }"></div>
 
@@ -28,10 +29,11 @@
 
 <button data-bind="click: clear">Clear</button>
 <button data-bind="click: swap">Swap</button>
+<button data-bind="click: compute">Compute</button>
 
 
 <script type="text/html" id="matrixTemplate">
-  <h2>Matrix has <span data-bind="text: rows"></span> rows and <span data-bind="text: columns"></span> columns</h2>
+  <h2>Matrix has <span data-bind="text: columns"></span> columns and <span data-bind="text: rows"></span> rows</h2>
   <table>
     <tbody data-bind="foreach: data">
     <tr data-bind="foreach: $data.cells">
@@ -39,11 +41,13 @@
     </tr>
     </tbody>
   </table>
+</script>
 
+<script type="text/html" id="resultMatrixTemplate">
   <table>
-    <tbody data-bind="foreach: data">
-    <tr data-bind="foreach: $data.cells">
-      <td data-bind="text: $data.value"></td>
+    <tbody data-bind="foreach: $data">
+    <tr data-bind="foreach: $data">
+      <td data-bind="text: $data"></td>
     </tr>
     </tbody>
   </table>
