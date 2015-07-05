@@ -27,10 +27,6 @@ html, body {
   display: table;
 }
 
-.b-matrix-wrapper__cell {
-  display: table-cell;
-}
-
 .b-matrix-wrapper__bracket {
   border: 2px solid #404040;
   width: 8px;
@@ -131,4 +127,8 @@ html, body {
 .clear-font {
   font-size: 0;
   line-height: 0;
+}
+
+.cell {
+  display: table-cell;
 }

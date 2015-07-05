@@ -43,27 +43,28 @@
 </div>
 
 <script type="text/html" id="matrixTemplate">
-  <div class="b-matrix-wrapper__cell b-matrix-wrapper__bracket b-matrix-wrapper__bracket_left"></div>
-  <div class="b-matrix-wrapper__cell">
+  <div class="cell b-matrix-wrapper__bracket b-matrix-wrapper__bracket_left"></div>
+  <div class="cell">
     <div data-bind="foreach: data" class="b-matrix b-matrix_input">
       <div data-bind="foreach: $data.cells" class="b-matrix-row">
-        <div class="b-matrix-cell" data-bind="css:{'b-matrix-cell_active': $data.editing, 'b-matrix-cell_empty': $data.value() === '' && !$data.editing()}">
-          <input type="text" data-bind="value: ($data.value() !== '' || $data.editing()) ? $data.value() : ($parentContext.$parent.letter + ($parentContext.$index() + 1) + ',' + ($index() + 1)),
-                                        numeric: $data.value,
-                                        valueUpdate: 'afterkeydown',
-                                        event: { focus: $root.enableEditing, blur: $root.disableEditing},
-                                        hasFocus: $data.editing"
-                 class="b-matrix-cell__input" />
+        <div class="b-matrix-cell" data-bind="css:{ 'b-matrix-cell_active': $data.editing,
+                                                    'b-matrix-cell_empty': $data.value() === '' && !$data.editing() }">
+          <input data-bind="value: ($data.value() !== '' || $data.editing()) ? $data.value : ($parentContext.$parent.letter + ($parentContext.$index() + 1) + ',' + ($index() + 1)),
+                            numeric: $data.value,
+                            valueUpdate: 'afterkeydown',
+                            event: { focus: $root.enableEditing, blur: $root.disableEditing},
+                            hasFocus: $data.editing"
+                 class="b-matrix-cell__input" type="text" />
         </div>
       </div>
     </div>
   </div>
-  <div class="b-matrix-wrapper__cell b-matrix-wrapper__bracket b-matrix-wrapper__bracket_right"></div>
+  <div class="cell b-matrix-wrapper__bracket b-matrix-wrapper__bracket_right"></div>
 </script>
 
 <script type="text/html" id="resultMatrixTemplate">
-  <div class="b-matrix-wrapper__cell b-matrix-wrapper__bracket b-matrix-wrapper__bracket_left"></div>
-  <div class="b-matrix-wrapper__cell">
+  <div class="cell b-matrix-wrapper__bracket b-matrix-wrapper__bracket_left"></div>
+  <div class="cell">
     <div data-bind="foreach: data" class="b-matrix b-matrix_result">
       <div data-bind="foreach: $data.cells" class="b-matrix-row">
         <div data-bind="text: $data.value() !== '' ? $data.value() : ($parentContext.$parent.letter + ($parentContext.$index() + 1) + ',' + ($index() + 1)),
@@ -72,7 +73,7 @@
       </div>
     </div>
   </div>
-  <div class="b-matrix-wrapper__cell b-matrix-wrapper__bracket b-matrix-wrapper__bracket_right"></div>
+  <div class="cell b-matrix-wrapper__bracket b-matrix-wrapper__bracket_right"></div>
 </script>
 
 <script src="/bower_components/knockout/dist/knockout.js"></script>
