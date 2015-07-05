@@ -40,7 +40,7 @@ function Row(n) {
         });
 
         return result;
-    }
+    };
 }
 
 function Matrix(m, n) {
@@ -122,23 +122,34 @@ function MatrixViewModel() {
     self.firstMatrix = ko.observable(new Matrix(3, 2));
     self.secondMatrix = ko.observable(new Matrix(2, 4));
 
-    self.selectedMatrixId = ko.observable(1);
+    self.selectedMatrixId = ko.observable(0);
     self.selectedMatrix = ko.computed(function () {
         return (self.selectedMatrixId() == 0) ? self.firstMatrix() : self.secondMatrix()
     });
 
     self.resultMatrix = ko.observable(new Matrix(self.firstMatrix().rows(), self.secondMatrix().columns()));
 
-    // TODO: implement states
-    //self.state = ko.observable(0);
+    self.editing = ko.observable(false);
 
+    self.enableEditing = function (){
+        self.editing(true);
+    };
+
+    self.disableEditing = function (){
+        self.editing(false);
+    };
+    self.isComputable = ko.computed(function () {
+        return self.firstMatrix().columns() == self.secondMatrix().rows();
+    });
+
+    self.cell = new Cell(1);
     self.matrices = [
         {
-            id: 1,
+            id: 0,
             title: 'Матрица A'
         },
         {
-            id: 0,
+            id: 1,
             title: 'Матрица B'
         }
     ];
@@ -163,10 +174,6 @@ function MatrixViewModel() {
             rows = self.secondMatrix().rows(),
             columns = self.firstMatrix().columns();
 
-        if (self.firstMatrix().columns() != self.secondMatrix().rows()) {
-            //TODO: error state
-        }
-
         var data = [],
             row;
         for (var i = 0; i < rows; i++) {
@@ -188,11 +195,10 @@ function MatrixViewModel() {
         return sum;
     };
 
-    var reinitResultMatrix  = function () {
+    var reinitResultMatrix = function () {
         var result = new Matrix(self.firstMatrix().rows(), self.secondMatrix().columns());
         self.resultMatrix(result.toArray());
     }
-
 };
 
 ko.bindingHandlers.numeric = {
@@ -201,11 +207,11 @@ ko.bindingHandlers.numeric = {
             var value = parseInt(ko.unwrap(valueAccessor()) + String.fromCharCode(event.keyCode));
             // Allow: backspace, delete, tab, escape, and enter
             if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
-                // Allow: Ctrl+A
+                    // Allow: Ctrl+A
                 (event.keyCode == 65 && event.ctrlKey === true) ||
-                // Allow: F1-F12
+                    // Allow: F1-F12
                 (event.keyCode >= 112 && event.keyCode <= 123) ||
-                // Allow: home, end, left, right
+                    // Allow: home, end, left, right
                 (event.keyCode >= 35 && event.keyCode <= 39)) {
                 // let it happen, don't do anything
                 return;

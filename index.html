@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Kontur test</title>
+  <link rel="stylesheet" href="/css/reset.css" />
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
 
@@ -37,7 +39,7 @@
   <table>
     <tbody data-bind="foreach: data">
     <tr data-bind="foreach: $data.cells">
-      <td><input type="text" data-bind="value: $data.value, numeric: $data.value, valueUpdate: ['afterkeydown']" /></td>
+      <td><input type="text" data-bind="value: $data.value, numeric: $data.value, valueUpdate: 'afterkeydown', event: { focus: $root.enableEditing, blur: $root.disableEditing}" /></td>
     </tr>
     </tbody>
   </table>
