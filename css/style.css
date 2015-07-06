@@ -23,13 +23,13 @@ label {
   cursor: pointer;
   display: inline-block;
   vertical-align: top;
-  margin: 0 14px 10px 0;
+  margin: 0 15px 10px 0;
 }
 .iradio {
   display: inline-block;
   height: 18px;
   width: 18px;
-  margin: 0 5px 0 1px;
+  margin: 0 0 0 1px;
   background: url(img/radio.png) 0 0 no-repeat;
   cursor: pointer;
 }
@@ -86,7 +86,7 @@ label {
 }
 
 .b-second-row {
-  margin: 53px 0 0 30px;
+  margin: 53px 0 0 31px;
 }
 
 .b-third-row {
@@ -391,9 +391,15 @@ label {
   background-position: -9px 0;
 }
 
+.b-hint {
+  color: #da0902;
+  margin: 36px 0 0 31px;
+}
 
-
-
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
 .clear {
   clear: both;
   display: block;
