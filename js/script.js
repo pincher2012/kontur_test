@@ -140,6 +140,24 @@ function MatrixViewModel() {
         return self.firstMatrix().rows() == self.secondMatrix().columns();
     });
 
+    // ie8
+    self.isMaxColumns = ko.computed(function () {
+        return self.selectedMatrix().columns() > 9;
+    });
+
+    self.isMinColumns = ko.computed(function () {
+        return self.selectedMatrix().columns() < 3;
+    });
+
+    self.isMaxRows = ko.computed(function () {
+        return self.selectedMatrix().rows() > 9;
+    });
+
+    self.isMinRows = ko.computed(function () {
+        return self.selectedMatrix().rows() <3;
+    });
+
+
     self.cell = new Cell(1);
     self.matrices = [
         {

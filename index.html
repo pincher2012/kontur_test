@@ -12,34 +12,50 @@
 
   <button data-bind="click: compute" class="b-green-button">Умножить матрицы</button>
 
-  <button data-bind="click: clear">Очистить матрицы</button>
-  <button data-bind="click: swap">Поменять матрицы местами</button>
+  <div class="b-second-row">
+    <button data-bind="click: clear" class="b-common-button"><i class="b-icon">&#xe012;</i>Очистить матрицы</button>
+    <button data-bind="click: swap" class="b-common-button"><i class="b-icon">&#xe01f;</i>Поменять матрицы местами
+    </button>
+  </div>
 
-  <!-- ko foreach: matrices -->
-  <input type="radio" name="selectedMatrix" data-bind="checkedValue: $data.id, checked: $root.selectedMatrixId" />
-  <span data-bind="text: title"></span>
-  <!-- /ko -->
-  <br />
+  <div class="b-third-row">
 
-  <button data-bind="click: addRow, enable: selectedMatrix().rows() < 10">Add row</button>
-  <button data-bind="click: removeRow, enable: selectedMatrix().rows() > 2">Remove row</button>
-  <span>строку</span>
-  <br />
+    <!-- ko foreach: matrices -->
+    <input data-bind="checkedValue: $data.id, checked: $root.selectedMatrixId, attr: {'id': 'radio_' + $index()}" type="radio" name="selectedMatrix" />
+    <label data-bind="text:title, attr: {'for': 'radio_' + $index()}"></label>
+    <!-- /ko -->
 
-  <button data-bind="click: addColumn, enable: selectedMatrix().columns() < 10">Добавить</button>
-  <button data-bind="click: removeColumn, enable: selectedMatrix().columns() > 2">Удалить</button>
-  <span>столбец</span>
-  <br />
+    <br />
 
+    <button data-bind="click: addRow, enable: !isMaxRows(), css: {'b-common-button_disabled': isMaxRows}" class="b-common-button b-common-button_add">
+      <i class="b-icon">&#xe00d;</i>Добавить
+    </button>
+    <button data-bind="click: removeRow, enable: !isMinRows(), css: {'b-common-button_disabled': isMinRows}" class="b-common-button">
+      <i class="b-icon">&#xe01e;</i>Удалить
+    </button>
+    <span>строку</span>
+    <br />
+
+    <button data-bind="click: addColumn, enable: !isMaxColumns(), css: {'b-common-button_disabled': isMaxColumns}" class="b-common-button b-common-button_add">
+      <i class="b-icon">&#xe00d;</i>Добавить
+    </button>
+    <button data-bind="click: removeColumn, enable: !isMinColumns(), css: {'b-common-button_disabled': isMinColumns}" class="b-common-button">
+      <i class="b-icon">&#xe01e;</i>Удалить
+    </button>
+    <span>столбец</span>
+    <br />
+  </div>
 
 </div>
 
 <div class="b-content">
-  <div class="ovh clear-font">
+  <div class="ovh clear-font b-content__row">
     <div data-bind="template: { name: 'resultMatrixTemplate', data: {data: resultMatrix, letter: 'c'} }" class="b-matrix-wrapper"></div>
     <div data-bind="template: { name: 'matrixTemplate', data: {data: secondMatrix, letter: 'a', letterCss: 'b-matrix-letter_side_right'} }" class="b-matrix-wrapper"></div>
   </div>
-  <div data-bind="template: { name: 'matrixTemplate', data: {data: firstMatrix, letter: 'b', letterCss: 'b-matrix-letter_side_bottom'} }" class="b-matrix-wrapper"></div>
+  <div class="b-content__row b-content__row_second">
+    <div data-bind="template: { name: 'matrixTemplate', data: {data: firstMatrix, letter: 'b', letterCss: 'b-matrix-letter_side_bottom'} }" class="b-matrix-wrapper"></div>
+  </div>
 </div>
 
 <script type="text/html" id="matrixTemplate">
@@ -76,7 +92,7 @@
   </div>
   <div class="cell b-matrix-wrapper__bracket b-matrix-wrapper__bracket_right"></div>
 </script>
-
+<div class="clear"></div>
 <script src="/bower_components/knockout/dist/knockout.js"></script>
 <script src="/bower_components/jquery/jquery.js"></script>
 <script src="/js/script.js"></script>

@@ -1,14 +1,78 @@
-html, body {
-  height: 100%;
+@font-face {
+  font-family: 'Kontur-Iconic-eco';
+  src: url('fonts/Kontur-Iconic-eco.eot');
+  src: url('fonts/Kontur-Iconic-eco.eot?#iefix') format('embedded-opentype'),
+  url('fonts/Kontur-Iconic-eco.woff2') format('woff2'),
+  url('fonts/Kontur-Iconic-eco.woff') format('woff'),
+  url('fonts/Kontur-Iconic-eco.ttf') format('truetype'),
+  url('fonts/Kontur-Iconic-eco.svg#Kontur-Iconic-eco') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+body {
   font: 14px "Segoe UI", sans-serif;
   line-height: 20px;
+  height: 100%;
+}
+
+input[type="radio"] {
+  display:none;
+}
+input[type="radio"] + label {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 14px 10px 0;
+}
+input[type="radio"] + label:before {
+  content: "";
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  margin: 0 5px 0 1px;
+  background: url(img/radio.png) 0 0 no-repeat;
+}
+
+input[type="radio"]:checked + label:before {
+  background-position: 0 -18px;
+}
+input[type="radio"]:focus + label:before {
+  background-position: -36px 0;
+}
+input[type="radio"]:focus:checked + label:before {
+  background-position: -36px -18px;
+}
+input[type="radio"]:hover + label:before {
+  background-position: -54px 0;
+}
+input[type="radio"]:hover:checked + label:before {
+  background-position: -54px -18px;
+}
+input[type="radio"]:active + label:before {
+  background-position: -72px 0;
+}
+input[type="radio"]:active:checked + label:before {
+  background-position: -72px -18px;
+}
+
+
+
+.b-icon {
+  font-family: 'Kontur-Iconic-eco';
+  font-style: normal;
+  display: inline-block;
+  margin-right: 4px;
 }
 
 .b-sidebar {
   width: 332px;
   background: #bcbcbc;
-  height: 100%;
-  float: left;
+  position: fixed;
+  top: 0;
+  bottom:0;
 }
 
 .b-sidebar_state_editing {
@@ -21,6 +85,14 @@ html, body {
 
 .b-content {
   margin-left: 332px;
+}
+
+.b-second-row {
+  margin: 53px 0 0 30px;
+}
+
+.b-third-row {
+  margin: 57px 0 0 30px;
 }
 
 .b-matrix-wrapper {
@@ -175,12 +247,11 @@ html, body {
 .b-green-button:before,
 .b-green-button:after {
   position: absolute;
-  content: " ";
+  content: "";
   display: block;
   top: 0;
   background: url(img/green-button-arrow.png) 0 0 no-repeat;
   height: 42px;
-  z-index: 2;
 }
 
 .b-green-button:after {
@@ -227,6 +298,102 @@ html, body {
   background-position: -23px 0;
 }
 
+.b-common-button {
+  border: 0;
+  outline: none;
+
+  background: url(img/common-button-bg.png) 0 0 repeat-x;
+  height: 32px;
+  margin: 0 3px 8px;
+  position: relative;
+
+  cursor: pointer;
+  font-size: 14px;
+  letter-spacing: -0.01em;
+
+  overflow: visible; /* ie */
+}
+.b-third-row .b-common-button {
+  margin-right: 7px;
+}
+
+.b-common-button_add {
+  padding-right: 8px;
+}
+
+.b-common-button:focus {
+  background-position: 0 -64px;
+}
+
+.b-common-button:hover {
+  background-position: 0 -96px;
+}
+
+.b-common-button:active {
+  background-position: 0 -128px;
+}
+
+.b-common-button.b-common-button_disabled {
+  background-position: 0 -32px;
+  color: #808080;
+  cursor: default;
+}
+
+.b-common-button:before,
+.b-common-button:after {
+  position: absolute;
+  content: "";
+  display: block;
+  top: 0;
+  background: url(img/common-button-border.png) 0 0 no-repeat;
+  height: 32px;
+}
+
+.b-common-button:after {
+  left: 100%;
+  background-position: -3px 0;
+  width: 3px;
+}
+
+.b-common-button:before {
+  left: 0;
+  margin-left: -3px;
+  width: 3px;
+}
+
+.b-common-button:focus:before {
+  background-position: -12px 0;
+}
+
+.b-common-button:focus:after {
+  background-position: -15px 0;
+}
+
+.b-common-button:hover:before {
+  background-position: -18px 0;
+}
+
+.b-common-button:hover:after {
+  background-position: -21px 0;
+}
+
+.b-common-button:active:before {
+  background-position: -24px 0;
+}
+
+.b-common-button:active:after {
+  background-position: -27px 0;
+}
+
+.b-common-button:disabled:before {
+  background-position: -6px 0;
+}
+
+.b-common-button:disabled:after {
+  background-position: -9px 0;
+}
+
+
 
 
 .clear {
@@ -234,13 +401,14 @@ html, body {
   display: block;
 }
 
-.ovh {
+.b-content__row {
   overflow: hidden;
-}
-
-.clear-font {
   font-size: 0;
   line-height: 0;
+}
+
+.b-content__row_second {
+  padding-bottom: 50px;
 }
 
 .cell {
