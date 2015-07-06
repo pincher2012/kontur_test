@@ -18,43 +18,41 @@ body {
   height: 100%;
 }
 
-input[type="radio"] {
-  display:none;
-}
-input[type="radio"] + label {
+
+label {
   cursor: pointer;
   display: inline-block;
   vertical-align: top;
   margin: 0 14px 10px 0;
 }
-input[type="radio"] + label:before {
-  content: "";
+.iradio {
   display: inline-block;
   height: 18px;
   width: 18px;
   margin: 0 5px 0 1px;
   background: url(img/radio.png) 0 0 no-repeat;
+  cursor: pointer;
 }
 
-input[type="radio"]:checked + label:before {
+.iradio.checked {
   background-position: 0 -18px;
 }
-input[type="radio"]:focus + label:before {
+.iradio.focus {
   background-position: -36px 0;
 }
-input[type="radio"]:focus:checked + label:before {
+.iradio.focus.checked {
   background-position: -36px -18px;
 }
-input[type="radio"]:hover + label:before {
+.iradio.hover {
   background-position: -54px 0;
 }
-input[type="radio"]:hover:checked + label:before {
+.iradio.hover.checked {
   background-position: -54px -18px;
 }
-input[type="radio"]:active + label:before {
+.iradio.active {
   background-position: -72px 0;
 }
-input[type="radio"]:active:checked + label:before {
+.iradio.active.checked {
   background-position: -72px -18px;
 }
 

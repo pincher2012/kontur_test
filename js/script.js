@@ -283,3 +283,6 @@ ko.bindingHandlers.numeric = {
 
 
 ko.applyBindings(new MatrixViewModel());
+
+
+$('input').iCheck();
