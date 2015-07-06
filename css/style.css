@@ -135,6 +135,99 @@ html, body {
   margin: 15px 0 0 -9px;
 }
 
+.b-green-button {
+  border: 0;
+  outline: none;
+
+  background: url(img/green-button-bg.png) 0 0 repeat-x;
+  height: 42px;
+  margin: 30px 15px 0 36px;
+  padding: 0 12px 0 17px;
+  position: relative;
+
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+
+  overflow: visible; /* ie */
+}
+
+.b-green-button:focus {
+  background-position: 0 -84px;
+}
+
+.b-green-button:hover {
+  background-position: 0 -126px;
+}
+
+.b-green-button:active {
+  background-position: 0 -168px;
+}
+
+.b-green-button:disabled {
+  background-position: 0 -42px;
+  color: #808080;
+  cursor: default;
+}
+
+
+.b-green-button:before,
+.b-green-button:after {
+  position: absolute;
+  content: " ";
+  display: block;
+  top: 0;
+  background: url(img/green-button-arrow.png) 0 0 no-repeat;
+  height: 42px;
+  z-index: 2;
+}
+
+.b-green-button:after {
+  left: 100%;
+  background-position: -4px 0;
+  width: 15px;
+}
+
+.b-green-button:before {
+  left: 0;
+  margin-left: -4px;
+  width: 4px;
+}
+
+.b-green-button:focus:before {
+  background-position: -38px 0;
+}
+
+.b-green-button:focus:after {
+  background-position: -42px 0;
+}
+
+.b-green-button:hover:before {
+  background-position: -57px 0;
+}
+
+.b-green-button:hover:after {
+  background-position: -61px 0;
+}
+
+.b-green-button:active:before {
+  background-position: -76px 0;
+}
+
+.b-green-button:active:after {
+  background-position: -80px 0;
+}
+
+.b-green-button:disabled:before {
+  background-position: -19px 0;
+}
+
+.b-green-button:disabled:after {
+  background-position: -23px 0;
+}
+
+
 
 .clear {
   clear: both;

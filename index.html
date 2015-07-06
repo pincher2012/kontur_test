@@ -10,27 +10,27 @@
 
 <div data-bind="css: {'b-sidebar_state_editing': editing, 'b-sidebar_state_error': !isComputable(), }" class="b-sidebar">
 
+  <button data-bind="click: compute" class="b-green-button">Умножить матрицы</button>
+
+  <button data-bind="click: clear">Очистить матрицы</button>
+  <button data-bind="click: swap">Поменять матрицы местами</button>
+
   <!-- ko foreach: matrices -->
   <input type="radio" name="selectedMatrix" data-bind="checkedValue: $data.id, checked: $root.selectedMatrixId" />
   <span data-bind="text: title"></span>
   <!-- /ko -->
-
-  <br />
-
-  <button data-bind="click: addColumn, enable: selectedMatrix().columns() < 10">Add column</button>
-  <button data-bind="click: removeColumn, enable: selectedMatrix().columns() > 2">Remove column
-  </button>
-
   <br />
 
   <button data-bind="click: addRow, enable: selectedMatrix().rows() < 10">Add row</button>
   <button data-bind="click: removeRow, enable: selectedMatrix().rows() > 2">Remove row</button>
-
+  <span>строку</span>
   <br />
 
-  <button data-bind="click: clear">Clear</button>
-  <button data-bind="click: swap">Swap</button>
-  <button data-bind="click: compute">Compute</button>
+  <button data-bind="click: addColumn, enable: selectedMatrix().columns() < 10">Добавить</button>
+  <button data-bind="click: removeColumn, enable: selectedMatrix().columns() > 2">Удалить</button>
+  <span>столбец</span>
+  <br />
+
 
 </div>
 
