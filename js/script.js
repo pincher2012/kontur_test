@@ -281,8 +281,10 @@ ko.bindingHandlers.numeric = {
     }
 };
 
+var viewModel = new MatrixViewModel();
+ko.applyBindings(viewModel);
 
-ko.applyBindings(new MatrixViewModel());
 
-
-$('input').iCheck();
+$('input').iCheck().on('ifChecked', function(){
+   viewModel.selectedMatrixId(this.value);
+});

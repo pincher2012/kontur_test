@@ -24,7 +24,6 @@
     <input data-bind="checkedValue: $data.id, checked: $root.selectedMatrixId, attr: {'id': 'radio_' + $index()}" type="radio" name="selectedMatrix" />
     <label data-bind="text:title, attr: {'for': 'radio_' + $index()}"></label>
     <!-- /ko -->
-
     <br />
 
     <button data-bind="click: addRow, enable: !isMaxRows(), css: {'b-common-button_disabled': isMaxRows}" class="b-common-button b-common-button_add">
