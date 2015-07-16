@@ -1,10 +1,47 @@
+ko.extenders.numeric = function (target, range) {
+    var result = ko.pureComputed({
+        read: target,
+        write: function (newValue) {
+            var current = target(),
+                min     = range[0],
+                max     = range[1],
+                valueToWrite,
+                newHandledValue;
+
+            if (newValue === '-' || newValue === '0-') {
+                valueToWrite = '-'
+            } else if (newValue === '' || isNaN(newValue)) {
+                valueToWrite = '';
+            } else {
+                newHandledValue = parseInt(+newValue);
+                valueToWrite = newHandledValue > 0 ? Math.min(max, newHandledValue) : Math.max(min, newHandledValue)
+            }
+
+            if (valueToWrite !== current) {
+                target(valueToWrite);
+            }
+            else {
+                if (newValue !== current) {
+                    target.notifySubscribers(valueToWrite);
+                }
+            }
+        }
+    }).extend({notify: 'always'});
+
+    return result;
+};
+
 function Cell(n) {
     var self = this;
-    self.value = ko.observable(n);
+    self.value = ko.observable(n).extend({numeric: [-10, 10]});
     self.editing = ko.observable(false);
     self.clear = function () {
         self.value('');
     };
+
+    self.value.subscribe(function (newValue) {
+        console.log(newValue);
+    });
 }
 
 function Row(n) {
@@ -98,7 +135,7 @@ function Matrix(m, n) {
     };
 
     self.transpose = function () {
-        var result = [],
+        var result  = [],
             columns = self.columns();
         for (var i = 0; i < columns; i++) {
             result.push(self.getColumn(i));
@@ -129,11 +166,11 @@ function MatrixViewModel() {
     });
 
     self.editing = ko.observable(false);
-    self.enableEditing = function (){
+    self.enableEditing = function () {
         self.editing(true);
     };
 
-    self.disableEditing = function (){
+    self.disableEditing = function () {
         self.editing(false);
     };
     self.isComputable = ko.computed(function () {
@@ -154,7 +191,7 @@ function MatrixViewModel() {
     });
 
     self.isMinRows = ko.computed(function () {
-        return self.selectedMatrix().rows() <3;
+        return self.selectedMatrix().rows() < 3;
     });
 
 
@@ -206,10 +243,10 @@ function MatrixViewModel() {
 
 
     self.compute = function () {
-        var firstMatrix = self.firstMatrix().transpose(),
+        var firstMatrix  = self.firstMatrix().transpose(),
             secondMatrix = self.secondMatrix().toArray(),
-            rows = self.secondMatrix().rows(),
-            columns = self.firstMatrix().columns();
+            rows         = self.secondMatrix().rows(),
+            columns      = self.firstMatrix().columns();
 
         var data = [],
             row;
@@ -238,53 +275,10 @@ function MatrixViewModel() {
     }
 };
 
-ko.bindingHandlers.numeric = {
-    init: function (element, valueAccessor) {
-        $(element).on("keydown", function (event) {
-            var value = parseInt(ko.unwrap(valueAccessor()) + String.fromCharCode(event.keyCode));
-            // Allow: backspace, delete, tab, escape, and enter
-            if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 27 || event.keyCode == 13 ||
-                    // Allow: Ctrl+A
-                (event.keyCode == 65 && event.ctrlKey === true) ||
-                    // Allow: F1-F12
-                (event.keyCode >= 112 && event.keyCode <= 123) ||
-                    // Allow: home, end, left, right
-                (event.keyCode >= 35 && event.keyCode <= 39)) {
-                // let it happen, don't do anything
-                return;
-            }
-            else if (ko.unwrap(valueAccessor()) == '' && (event.keyCode == 109 || event.keyCode == 189)) {
-                return;
-            }
-            else {
-                // Ensure that it is a number and stop the keypress
-                if (event.shiftKey || (event.keyCode < 48 || event.keyCode > 57) && (event.keyCode < 96 || event.keyCode > 105)) {
-                    event.preventDefault();
-                }
-
-                if (value > 10) {
-                    element.value = 10;
-                    event.preventDefault();
-                }
-
-                if (value < -10) {
-                    element.value = -10;
-                    event.preventDefault();
-                }
-
-                if (value >= -10 && value <= 10) {
-                    element.value = value;
-                    event.preventDefault();
-                }
-            }
-        });
-    }
-};
-
 var viewModel = new MatrixViewModel();
 ko.applyBindings(viewModel);
 
 
-$('input').iCheck().on('ifChecked', function(){
-   viewModel.selectedMatrixId(this.value);
+$('input').iCheck().on('ifChecked', function () {
+    viewModel.selectedMatrixId(this.value);
 });

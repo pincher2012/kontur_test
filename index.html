@@ -45,7 +45,7 @@
     <br />
   </div>
 
-  <p class="b-hint" data-bind="css: {'hidden': isComputable}">Такие матрицы нельзя перемножить,<br />
+  <p class="b-hint hidden" data-bind="css: {'hidden': isComputable}">Такие матрицы нельзя перемножить,<br />
                     так как количество столбцов матрицы A,<br />
                     не равно количеству строк матрицы B.</p>
 </div>
@@ -68,8 +68,7 @@
         <div class="b-matrix-cell" data-bind="css:{ 'b-matrix-cell_active': $data.editing,
                                                     'b-matrix-cell_empty': $data.value() === '' && !$data.editing() }">
           <input data-bind="value: ($data.value() !== '' || $data.editing()) ? $data.value : ($parentContext.$parent.letter + ($parentContext.$index() + 1) + ',' + ($index() + 1)),
-                            numeric: $data.value,
-                            valueUpdate: 'afterkeydown',
+                            valueUpdate: ['input', 'propertychange'],
                             event: { focus: $root.enableEditing, blur: $root.disableEditing},
                             hasFocus: $data.editing"
                  class="b-matrix-cell__input" type="text" />
