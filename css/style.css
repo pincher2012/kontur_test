@@ -18,12 +18,16 @@ body {
   height: 100%;
 }
 
+input, select, textarea, button{
+  font-family:inherit;
+}
 
-label {
+.b-radio-label {
   cursor: pointer;
   display: inline-block;
   vertical-align: top;
-  margin: 0 15px 10px 0;
+  margin: 2px 14px 17px 1px;
+  line-height: 1;
 }
 .iradio {
   display: inline-block;
@@ -86,7 +90,7 @@ label {
 }
 
 .b-second-row {
-  margin: 53px 0 0 31px;
+  margin: 54px 0 0 31px;
 }
 
 .b-third-row {
@@ -139,8 +143,8 @@ label {
 
 .b-matrix_result .b-matrix-cell{
   padding: 18px 0 0 6px;
-  letter-spacing: 0.025em;
-  font-size: 13px;
+  font-size: 14px;
+  background: #f2f2f2;
 }
 
 .b-matrix_input .b-matrix-cell {
@@ -166,20 +170,18 @@ label {
   box-sizing: border-box;
   
   border: 0;
-  padding: 14px 0 0 6px;
+  padding: 10px 0 0 6px;
   margin: 0;
   width: 38px;
   height: 38px;
+  font-size: 14px;
 }
 
 .b-matrix-cell:first-child {
   margin-left: 0;
 }
 
-.b-matrix_result .b-matrix-cell {
-  background: #f2f2f2;
 
-}
 
 .b-matrix-cell_empty,
 .b-matrix-cell_empty .b-matrix-cell__input {
@@ -210,15 +212,15 @@ label {
   outline: none;
 
   background: url(img/green-button-bg.png) 0 0 repeat-x;
-  height: 42px;
+  height: 41px;
   margin: 30px 15px 0 36px;
-  padding: 0 12px 0 17px;
+  padding: 0 13px 1px 17px;
   position: relative;
 
   color: #ffffff;
   cursor: pointer;
-  font-size: 14px;
-  letter-spacing: 0.08em;
+  font-size: 15px;
+  letter-spacing: 0.04em;
 
   overflow: visible; /* ie */
 }
@@ -301,18 +303,24 @@ label {
   outline: none;
 
   background: url(img/common-button-bg.png) 0 0 repeat-x;
-  height: 32px;
-  margin: 0 3px 8px;
+  height: 31px;
+  margin: 0 3px 9px;
+  padding: 0 8px 1px 5px;
   position: relative;
 
   cursor: pointer;
   font-size: 14px;
-  letter-spacing: -0.01em;
 
   overflow: visible; /* ie */
 }
 .b-third-row .b-common-button {
-  margin-right: 7px;
+  margin-right: 8px;
+}
+
+.b-third-row__caption {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 6px;
 }
 
 .b-common-button_add {

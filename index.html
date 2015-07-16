@@ -22,7 +22,7 @@
 
     <!-- ko foreach: matrices -->
     <input data-bind="checkedValue: $data.id, checked: $root.selectedMatrixId, attr: {'id': 'radio_' + $index()}" type="radio" name="selectedMatrix" />
-    <label data-bind="text:title, attr: {'for': 'radio_' + $index()}"></label>
+    <label data-bind="text:title, attr: {'for': 'radio_' + $index()}" class="b-radio-label"></label>
     <!-- /ko -->
     <br />
 
@@ -32,7 +32,7 @@
     <button data-bind="click: removeRow, enable: !isMinRows(), css: {'b-common-button_disabled': isMinRows}" class="b-common-button">
       <i class="b-icon">&#xe01e;</i>Удалить
     </button>
-    <span>строку</span>
+    <span class="b-third-row__caption">строку</span>
     <br />
 
     <button data-bind="click: addColumn, enable: !isMaxColumns(), css: {'b-common-button_disabled': isMaxColumns}" class="b-common-button b-common-button_add">
@@ -41,7 +41,7 @@
     <button data-bind="click: removeColumn, enable: !isMinColumns(), css: {'b-common-button_disabled': isMinColumns}" class="b-common-button">
       <i class="b-icon">&#xe01e;</i>Удалить
     </button>
-    <span>столбец</span>
+    <span class="b-third-row__caption">столбец</span>
     <br />
   </div>
 
