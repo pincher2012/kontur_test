@@ -10,16 +10,14 @@
   font-style: normal;
 }
 
-
-
 body {
   font: 14px "Segoe UI", sans-serif;
   line-height: 20px;
   height: 100%;
 }
 
-input, select, textarea, button{
-  font-family:inherit;
+input, select, textarea, button {
+  font-family: inherit;
 }
 
 .b-radio-label {
@@ -29,6 +27,7 @@ input, select, textarea, button{
   margin: 2px 14px 17px 1px;
   line-height: 1;
 }
+
 .iradio {
   display: inline-block;
   height: 18px;
@@ -41,26 +40,30 @@ input, select, textarea, button{
 .iradio.checked {
   background-position: 0 -18px;
 }
+
 .iradio.focus {
   background-position: -36px 0;
 }
+
 .iradio.focus.checked {
   background-position: -36px -18px;
 }
+
 .iradio.hover {
   background-position: -54px 0;
 }
+
 .iradio.hover.checked {
   background-position: -54px -18px;
 }
+
 .iradio.active {
   background-position: -72px 0;
 }
+
 .iradio.active.checked {
   background-position: -72px -18px;
 }
-
-
 
 .b-icon {
   font-family: 'Kontur-Iconic-eco';
@@ -74,7 +77,7 @@ input, select, textarea, button{
   background: #bcbcbc;
   position: fixed;
   top: 0;
-  bottom:0;
+  bottom: 0;
 }
 
 .b-sidebar_state_editing {
@@ -141,7 +144,7 @@ input, select, textarea, button{
 
 }
 
-.b-matrix_result .b-matrix-cell{
+.b-matrix_result .b-matrix-cell {
   padding: 18px 0 0 6px;
   font-size: 14px;
   background: #f2f2f2;
@@ -150,9 +153,9 @@ input, select, textarea, button{
 .b-matrix_input .b-matrix-cell {
   border-top-color: #b2b2b2;
 
-  -webkit-box-shadow: inset 0 1px 0 0 rgba(242,242,242,1);
-  -moz-box-shadow: inset 0 1px 0 0 rgba(242,242,242,1);
-  box-shadow: inset 0 1px 0 0 rgba(242,242,242,1);
+  -webkit-box-shadow: inset 0 1px 0 0 rgba(242, 242, 242, 1);
+  -moz-box-shadow: inset 0 1px 0 0 rgba(242, 242, 242, 1);
+  box-shadow: inset 0 1px 0 0 rgba(242, 242, 242, 1);
 }
 
 .b-matrix_input .b-matrix-cell_active {
@@ -168,7 +171,7 @@ input, select, textarea, button{
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  
+
   border: 0;
   padding: 10px 0 0 6px;
   margin: 0;
@@ -180,8 +183,6 @@ input, select, textarea, button{
 .b-matrix-cell:first-child {
   margin-left: 0;
 }
-
-
 
 .b-matrix-cell_empty,
 .b-matrix-cell_empty .b-matrix-cell__input {
@@ -242,7 +243,6 @@ input, select, textarea, button{
   color: #808080;
   cursor: default;
 }
-
 
 .b-green-button:before,
 .b-green-button:after {
@@ -313,6 +313,7 @@ input, select, textarea, button{
 
   overflow: visible; /* ie */
 }
+
 .b-third-row .b-common-button {
   margin-right: 8px;
 }
@@ -408,6 +409,7 @@ input, select, textarea, button{
   display: none !important;
   visibility: hidden !important;
 }
+
 .clear {
   clear: both;
   display: block;

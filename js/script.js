@@ -38,10 +38,6 @@ function Cell(n) {
     self.clear = function () {
         self.value('');
     };
-
-    self.value.subscribe(function (newValue) {
-        console.log(newValue);
-    });
 }
 
 function Row(n) {
