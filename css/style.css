@@ -11,13 +11,13 @@
 }
 
 body {
-  font: 14px "Segoe UI", sans-serif;
+
   line-height: 20px;
   height: 100%;
 }
 
-input, select, textarea, button {
-  font-family: inherit;
+body, input, select, textarea, button {
+  font: 14px "Segoe UI", sans-serif;
 }
 
 .b-radio-label {
@@ -93,7 +93,7 @@ input, select, textarea, button {
 }
 
 .b-second-row {
-  margin: 54px 0 0 31px;
+  margin: 53px 0 0 31px;
 }
 
 .b-third-row {
@@ -213,15 +213,14 @@ input, select, textarea, button {
   outline: none;
 
   background: url(img/green-button-bg.png) 0 0 repeat-x;
-  height: 41px;
+  height: 42px;
   margin: 30px 15px 0 36px;
-  padding: 0 13px 1px 17px;
+  padding: 0 12px 3px 17px;
   position: relative;
 
   color: #ffffff;
   cursor: pointer;
-  font-size: 15px;
-  letter-spacing: 0.04em;
+  font-size: 16px;
 
   overflow: visible; /* ie */
 }
@@ -303,8 +302,8 @@ input, select, textarea, button {
   outline: none;
 
   background: url(img/common-button-bg.png) 0 0 repeat-x;
-  height: 31px;
-  margin: 0 3px 9px;
+  height: 32px;
+  margin: 0 3px 8px;
   padding: 0 8px 1px 5px;
   position: relative;
 
@@ -325,7 +324,8 @@ input, select, textarea, button {
 }
 
 .b-common-button_add {
-  padding-right: 8px;
+  margin-left: 4px;
+  padding-right: 7px;
 }
 
 .b-common-button:focus {
